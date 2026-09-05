@@ -32,3 +32,40 @@ void pointers, and explicit typecasting.
 ## Important idea
 
 A pointer is a variable that stores an address. The `&` operator gets an address, and the `*` operator follows an address to read or change the value stored there.
+
+## Pass by value and pass by reference
+
+### Pass by value
+
+In pass by value, a function receives a copy of the argument. Changes to the
+parameter do not change the original variable.
+
+```c
+void add_one(int number)
+{
+	number = number + 1;
+}
+```
+
+Calling `add_one(score)` changes only the copy inside the function.
+
+### Pass by reference using a pointer
+
+C technically always passes arguments by value. To let a function change the
+original variable, pass its address as a pointer. The function receives a copy
+of the address, then uses `*` to change the value at that address.
+
+```c
+void add_one(int *number)
+{
+	*number = *number + 1;
+}
+```
+
+Call it with `add_one(&score)`. The `&` sends the address of `score`, and `*number`
+accesses the original `score`. This is commonly called pass by reference in C
+lessons, although the precise description is passing a pointer by value.
+
+Compare [02_change_value.c](02_change_value.c) with the pass-by-value version
+above. [03_swap_values.c](03_swap_values.c) shows the same technique with two
+variables.
